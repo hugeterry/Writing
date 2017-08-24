@@ -1,5 +1,5 @@
 # Writing
 这是一颗磨剑石
 
-备份我blog：[hugeterry.cn](http://hugeterry.cn/) 的文章
+记录我的 blog：[hugeterry.cn](http://hugeterry.cn/) 的文章
 
