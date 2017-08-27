@@ -1,6 +1,6 @@
 ---
 ID: 597
-post_title: 让Android进入耳机模式
+post_title: 让Android手机强制进入耳机模式
 author: hugeterry
 post_excerpt: ""
 layout: post
@@ -14,18 +14,18 @@ post_date: 2017-08-16 21:43:08
 
 主要的核心代码：
 
-<code>audioManager.setSpeakerphoneOn(false);
+<pre><code>audioManager.setSpeakerphoneOn(false);
 if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB){
 audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
 } else {
 audioManager.setMode(AudioManager.MODE_IN_CALL);
-}</code>
+}</code></pre>
 
 在服务里启动音频管理器AudioManager对其修改即可
 
 使用服务启动它后，设置对应的action，用adb am命令启动它即可
 
-<code>adb shell am startservice -a &lt;对应的action&gt; -n &lt;包名&gt;/&lt;服务名&gt;</code>
+<pre><code>adb shell am startservice -a &lt;对应的action&gt; -n &lt;包名&gt;/&lt;服务名&gt;</code></pre>
 
 如：
 <pre><code>adb shell am startservice -a cn.hugeterry.stoptalk.ACTION_START -n cn.hugeterry.stoptalk/.StopTalkingService
