@@ -10,7 +10,7 @@ post_date: 2015-10-20 21:46:55
 ---
 &nbsp;
 
-<img class="alignnone" src="http://hugeterry.cn/img/aboutme.jpg" alt="" width="1000" height="467" />
+<img class="alignnone" src="http://hugeterry.cn/img/aboutme.jpg" alt="" />
 
 &nbsp;
 
