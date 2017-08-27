@@ -8,11 +8,7 @@ permalink: http://hugeterry.cn/about
 published: true
 post_date: 2015-10-20 21:46:55
 ---
-&nbsp;
-
 <img class="alignnone" src="http://hugeterry.cn/img/aboutme.jpg" alt="" />
-
-&nbsp;
 
 因为觉得玩技术很酷所以大学加入了<a href="http://www.xingkong.us/">一个好玩的组织</a>晋升到程序猿的行列
 
