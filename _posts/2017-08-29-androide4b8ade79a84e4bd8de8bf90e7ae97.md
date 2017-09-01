@@ -35,7 +35,9 @@ post_date: 2017-08-29 16:40:36
 public static final int FLAG_ACTIVITY_SINGLE_TOP = 0x20000000;
 public static final int FLAG_ACTIVITY_MULTIPLE_TASK = 0x08000000;</code></pre>
 所以我们在添加intent时会使用这种写法：
+
 <pre<code>mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED| Intent.FLAG_ACTIVITY_SINGLE_TOP);</code></pre>
+
 <blockquote>这里可能涉及到一个问题:为什么使用十六进制
 
 其实在android的R文件中你也会看到都是使用十六进制作为数据，主要原因是16进制比较方便转换成二进制，因为c语言非常多的数据运行需要使用位运算，位运算就必然就是要转化成二进制。那为什么不直接使用二进制呢？原因是二进制书写太容易出错，又长。按十六进制和二进制来说、可以一一按位转换、比如:
