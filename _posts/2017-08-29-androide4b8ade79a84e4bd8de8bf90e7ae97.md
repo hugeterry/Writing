@@ -25,7 +25,7 @@ post_date: 2017-08-29 16:40:36
 4,第7天，喝了毒药的老鼠都死了，那个二进制队列转为为十进制就是毒药的标号。
 比如第3只老鼠死亡，其他老鼠没死，队列为0000000100，第四瓶水有毒。
 第1，5，6，8老鼠死亡，其他没死，队列为0010110001，第177瓶水有毒。</div>
-<div></div>
+<br>
 作者：kirch链接：https://www.zhihu.com/question/19676641/answer/14123096来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</blockquote>
 </div>
 通过这个问题第一二个问答懂得解题的方式后,也就懂得使用位运算的思想
@@ -35,21 +35,19 @@ post_date: 2017-08-29 16:40:36
 public static final int FLAG_ACTIVITY_SINGLE_TOP = 0x20000000;
 public static final int FLAG_ACTIVITY_MULTIPLE_TASK = 0x08000000;</code></pre>
 所以我们在添加intent时会使用这种写法：
-<pre><code>mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED| Intent.FLAG_ACTIVITY_SINGLE_TOP);</code></pre>
+<pre<code>mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED| Intent.FLAG_ACTIVITY_SINGLE_TOP);</code></pre>
 <blockquote>这里可能涉及到一个问题:为什么使用十六进制
 
 其实在android的R文件中你也会看到都是使用十六进制作为数据，主要原因是16进制比较方便转换成二进制，因为c语言非常多的数据运行需要使用位运算，位运算就必然就是要转化成二进制。那为什么不直接使用二进制呢？原因是二进制书写太容易出错，又长。按十六进制和二进制来说、可以一一按位转换、比如:
 
-0x4EF  -&gt;  0100 1110 1111
-
-0x4C5596 -&gt;  0100 1100 0101 0101 1001 0110
+<pre<code>0x4EF  -&gt;  0100 1110 1111
+0x4C5596 -&gt;  0100 1100 0101 0101 1001 0110</code></pre>
 
 参考：<a href="http://www.cnblogs.com/200911/p/3348371.html?utm_source=tuicool" target="_blank" rel="noopener">为什么android的R类要定义成16进制</a></blockquote>
 而当我们自己执行一些api操作时,像在android 6.0+ 改变状态栏:
 
 白底黑字:
 <div>
-<div class="highlight">
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
             activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
    }
