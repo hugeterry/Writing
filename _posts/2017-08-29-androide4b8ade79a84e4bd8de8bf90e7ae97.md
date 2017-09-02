@@ -48,17 +48,15 @@ public static final int FLAG_ACTIVITY_MULTIPLE_TASK = 0x08000000;</code></pre>
 而当我们自己执行一些api操作时,像在android 6.0+ 改变状态栏:
 
 白底黑字:
-<div>
-<div class="highlight">
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
             activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-   }
+}
 </code></pre>
 黑底白字:
-<pre><code class="language-text">if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
+<pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
             activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
 }</code></pre>
-</div>
+
 结合上面的思想，就有了以下运用：
 
 <strong>添加属性（或运算）：</strong>
@@ -87,5 +85,3 @@ android源码例子：
             uri.append("intent:");
 }</code></pre>
 以上是关于android中源码以及实际应用的位运算常见的运用
-
-</div>
