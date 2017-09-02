@@ -49,14 +49,13 @@ public static final int FLAG_ACTIVITY_MULTIPLE_TASK = 0x08000000;</code></pre>
 
 白底黑字:
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 }
 </code></pre>
 黑底白字:
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
+activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
 }</code></pre>
-
 结合上面的思想，就有了以下运用：
 
 <strong>添加属性（或运算）：</strong>
@@ -71,7 +70,7 @@ android源码例子：
 <strong>删除属性（&amp;～）：</strong>
 android6.0+ 状态栏更改为黑字：
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
+activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
 }</code></pre>
 android源码例子：
 <pre><code>intent.mFlags &amp;= ~IMMUTABLE_FLAGS;</code></pre>
