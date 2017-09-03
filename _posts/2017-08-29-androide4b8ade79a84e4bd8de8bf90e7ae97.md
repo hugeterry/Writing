@@ -8,8 +8,9 @@ permalink: http://hugeterry.cn/dreams/613
 published: true
 post_date: 2017-08-29 16:40:36
 ---
-最近在开发中见到了位运算，揣摩了许久
-学会从开发中运用位运算，首先要懂得他的思想,这个就涉及一道常见的题目:<a href="https://www.zhihu.com/question/19676641">有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有 10 只小白鼠和一星期的时间，如何检验出哪个瓶子里有毒药？</a>
+最近在开发中见到了位运算，揣摩了许久..
+
+学会从开发中运用位运算，首先要懂得他的思想,这个就涉及一道常见的题目:<a href="https://www.zhihu.com/question/19676641" target="_blank" rel="noopener">有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有 10 只小白鼠和一星期的时间，如何检验出哪个瓶子里有毒药？</a>
 <div>
 <blockquote>
 <div>答案是这样的：</div>
@@ -57,8 +58,7 @@ activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_L
 activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
 }</code></pre>
 结合上面的思想，就有了以下运用：
-
-<strong>添加属性（或运算）：</strong>
+<h3><strong>添加属性（或运算）：</strong></h3>
 android6.0+ 状态栏白底黑字：
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
 activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
@@ -67,14 +67,14 @@ activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_L
 <pre><code>event.mFlags |= FLAG_CANCELED | FLAG_CANCELED_LONG_PRESS;</code></pre>
 android源码例子：
 <pre><code>baseIntent = Intent.parseUri(arg, Intent.URI_INTENT_SCHEME| Intent.URI_ANDROID_APP_SCHEME | Intent.URI_ALLOW_UNSAFE);</code></pre>
-<strong>删除属性（&amp;～）：</strong>
+<h3><strong>删除属性（&amp;～）：</strong></h3>
 android6.0+ 状态栏更改为黑字：
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
 activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
 }</code></pre>
 android源码例子：
 <pre><code>intent.mFlags &amp;= ~IMMUTABLE_FLAGS;</code></pre>
-<strong>判断是否包含该属性（与运算结果为0：不包含；结果为子属性：包含）：</strong>
+<h3><strong>判断是否包含该属性（与运算结果为0：不包含；结果为子属性：包含）：</strong></h3>
 判断视图是否为disable 这里ENABLED_MASK的值与 DISABLED的值相同：
 <pre><code>if ((viewFlags &amp; ENABLED_MASK) == DISABLED) {  
     ...  
