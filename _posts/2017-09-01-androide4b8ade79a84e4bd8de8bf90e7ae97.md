@@ -6,7 +6,7 @@ post_excerpt: ""
 layout: post
 permalink: http://hugeterry.cn/dreams/613
 published: true
-post_date: 2017-08-29 16:40:36
+post_date: 2017-09-01 20:40:36
 ---
 最近在开发中见到了位运算，揣摩了许久..
 
