@@ -8,7 +8,7 @@ permalink: http://hugeterry.cn/dreams/613
 published: true
 post_date: 2017-09-01 20:40:36
 ---
-最近在开发中见到了位运算，揣摩了许久..
+最近在开发中见到了位运算，揣摩了许久，总结了一下
 
 学会从开发中运用位运算，首先要懂得他的思想,这个就涉及一道常见的题目:<a href="https://www.zhihu.com/question/19676641" target="_blank" rel="noopener">有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有 10 只小白鼠和一星期的时间，如何检验出哪个瓶子里有毒药？</a>
 <div>
@@ -27,7 +27,7 @@ post_date: 2017-09-01 20:40:36
 比如第3只老鼠死亡，其他老鼠没死，队列为0000000100，第四瓶水有毒。
 第1，5，6，8老鼠死亡，其他没死，队列为0010110001，第177瓶水有毒。</div>
 <div></div>
-作者：kirch链接：https://www.zhihu.com/question/19676641/answer/14123096来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</blockquote>
+作者：kirch链接：https://www.zhihu.com/question/19676641/answer/14123096来源：知乎著作权归作者所有</blockquote>
 </div>
 通过这个问题第一二个问答懂得解题的方式后,也就懂得使用位运算的思想
 
@@ -57,6 +57,8 @@ activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_L
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
 activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN &amp; ~FLAG_SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; 
 }</code></pre>
+&nbsp;
+
 结合上面的思想，就有了以下运用：
 <h3><strong>添加属性（或运算）：</strong></h3>
 android6.0+ 状态栏白底黑字：
@@ -67,6 +69,7 @@ activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_L
 <pre><code>event.mFlags |= FLAG_CANCELED | FLAG_CANCELED_LONG_PRESS;</code></pre>
 android源码例子：
 <pre><code>baseIntent = Intent.parseUri(arg, Intent.URI_INTENT_SCHEME| Intent.URI_ANDROID_APP_SCHEME | Intent.URI_ALLOW_UNSAFE);</code></pre>
+&nbsp;
 <h3><strong>删除属性（&amp;～）：</strong></h3>
 android6.0+ 状态栏更改为黑字：
 <pre><code>if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) {
@@ -74,6 +77,7 @@ activity.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_L
 }</code></pre>
 android源码例子：
 <pre><code>intent.mFlags &amp;= ~IMMUTABLE_FLAGS;</code></pre>
+&nbsp;
 <h3><strong>判断是否包含该属性（与运算结果为0：不包含；结果为子属性：包含）：</strong></h3>
 判断视图是否为disable 这里ENABLED_MASK的值与 DISABLED的值相同：
 <pre><code>if ((viewFlags &amp; ENABLED_MASK) == DISABLED) {  
@@ -83,4 +87,6 @@ android源码例子：
 <pre><code>if ((flags&amp;URI_INTENT_SCHEME) != 0) {
             uri.append("intent:");
 }</code></pre>
+&nbsp;
+
 以上是关于android中源码以及实际应用的位运算常见的运用
