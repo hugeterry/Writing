@@ -1,7 +1,7 @@
 ---
 ID: 597
 post_title: 让Android手机强制进入耳机模式
-author: hugeterry
+author: HugeTerry
 post_excerpt: ""
 layout: post
 permalink: http://hugeterry.cn/dreams/597
