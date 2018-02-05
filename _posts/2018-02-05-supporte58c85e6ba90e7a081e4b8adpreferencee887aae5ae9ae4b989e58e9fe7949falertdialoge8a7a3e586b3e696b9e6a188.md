@@ -26,7 +26,6 @@ post_date: 2018-02-05 23:08:28
 、android.support.v7.preference.ListPreference）弹出的alertdialog。而AppCompatActivity - PreferenceFragmentCompat是可以的
 <blockquote>那么为什么会这样？我们从两者的源码出发去探索</blockquote>
 android.support.v7.preference. PreferenceFragmentCompat 源码：
-
 <pre><code>@Override
 public void onDisplayPreferenceDialog(Preference preference) {
     .....
@@ -43,11 +42,9 @@ public void onDisplayPreferenceDialog(Preference preference) {
     }
     .....
 }</code></pre>
-
-<a href="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v7-preference.png"><img class="alignnone  wp-image-660" src="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v7-preference.png" alt="" width="540" height="391" /></a>
+<a href="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v7-preference.png"><img class="alignnone wp-image-660" src="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v7-preference.png" alt="" width="540" height="391" /></a>
 
 android.support.v14.preference.PreferenceFragment源码：
-
 <pre><code>@Override
 public void onDisplayPreferenceDialog(Preference preference) {
 	....
@@ -64,8 +61,7 @@ public void onDisplayPreferenceDialog(Preference preference) {
 	}
 	....
 }</code></pre>
-
-<a href="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png"><img class="alignnone  wp-image-661" src="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png" alt="" width="523" height="174" /></a>
+<a href="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png"><img class="alignnone wp-image-661" src="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png" alt="" width="523" height="174" /></a>
 
 即v14包中在PreferenceFragment下使用了EditTextPreferenceDialogFragment、ListPreferenceDialogFragment、MultiSelectListPreferenceDialogFragment，而他们继承了PreferenceDialogFragment
 
@@ -74,7 +70,6 @@ public void onDisplayPreferenceDialog(Preference preference) {
 那么我们接下来看一下 PreferenceDialogFragment 和 PreferenceDialogFragmentCompat 的源码：
 
 android.support.v14.preference. PreferenceDialogFragment 源码：
-
 <pre><code>@Overridepublic @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
     final Context context = getActivity();
     mWhichButtonClicked = DialogInterface.BUTTON_NEGATIVE;
@@ -87,11 +82,9 @@ android.support.v14.preference. PreferenceDialogFragment 源码：
 	//...省略
     return dialog;
 }</code></pre>
-
 &nbsp;
 
 android.support.v7.preference.PreferenceDialogFragmentCompat源码：
-
 <pre><code>@Override
 public @NonNull
 Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -105,7 +98,6 @@ Dialog onCreateDialog(Bundle savedInstanceState) {
             .setNegativeButton(mNegativeButtonText, this);
 
 }</code></pre>
-
 v14下的PreferenceDialogFragment 使用的是android.app.AlertDialog，而v7下的PreferenceDialogFragmentCompat使用的是android.support.v7.app.AlertDialog
 
 那么，接下来问题便转化成：
@@ -113,24 +105,20 @@ v14下的PreferenceDialogFragment 使用的是android.app.AlertDialog，而v7下
 我们知道，AlertDialog的源码使用了建造者模式，用到了AlertController去进行控制
 
 com.android.internal.app. AlertController源码：
-
 <pre><code>protected AlertController(Context context, DialogInterface di, Window window) {
     ...
     final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,                				com.android.internal.R.attr.alertDialogStyle, 0);
     ...
 }</code></pre>
-
 &nbsp;
 
 android.support.v7.app. AlertController源码:
-
 <pre><code>public AlertController(Context context, AppCompatDialog di, Window window) {
 	...
     final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,
                 android.support.v7.appcompat.R.attr.alertDialogStyle, 0);
 	...
 }</code></pre>
-
 于是乎比较原生和v7下的AlertController会发现原生使用的是com.android.internal.R.styleable.AlertDialog，我们是无法通过更改alertdialogstyle去修改原生的样式的，虽然官方在官方文档中有提供如下api
 <blockquote><a href="https://developer.android.com/reference/android/app/AlertDialog.Builder.html#AlertDialog.Builder(android.content.Context,%20int)">AlertDialog.Builder</a>(<a href="https://developer.android.com/reference/android/content/Context.html">Context</a> context, int themeResId)
 
