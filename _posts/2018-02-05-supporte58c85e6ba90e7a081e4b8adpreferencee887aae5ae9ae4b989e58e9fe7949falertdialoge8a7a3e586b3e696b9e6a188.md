@@ -1,7 +1,7 @@
 ---
 ID: 659
 post_title: >
-  support包源码中preference自定义原生alertdialog解决方案
+  support包中preference下自定义原生alertdialog解决方案
 author: hugeterry
 post_excerpt: ""
 layout: post
