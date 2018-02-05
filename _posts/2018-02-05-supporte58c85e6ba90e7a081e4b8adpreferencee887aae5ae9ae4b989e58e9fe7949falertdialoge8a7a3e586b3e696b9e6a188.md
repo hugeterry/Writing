@@ -29,19 +29,19 @@ android.support.v7.preference. PreferenceFragmentCompat 源码：
 
 <pre><code>@Override
 public void onDisplayPreferenceDialog(Preference preference) {
-.....
-final DialogFragment f;
-if (preference instanceof EditTextPreference) {
-f = EditTextPreferenceDialogFragmentCompat.newInstance(preference.getKey());
-} else if (preference instanceof ListPreference) {
-f = ListPreferenceDialogFragmentCompat.newInstance(preference.getKey());
-} else if (preference instanceof AbstractMultiSelectListPreference) {
-f = MultiSelectListPreferenceDialogFragmentCompat.newInstance(preference.getKey());
-} else {
-throw new IllegalArgumentException("Tried to display dialog for unknown " +
-"preference type. Did you forget to override onDisplayPreferenceDialog()?");
-}
-.....
+    .....
+    final DialogFragment f;
+    if (preference instanceof EditTextPreference) {
+        f = EditTextPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+    } else if (preference instanceof ListPreference) {
+        f = ListPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+    } else if (preference instanceof AbstractMultiSelectListPreference) {
+        f = MultiSelectListPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+    } else {
+        throw new IllegalArgumentException("Tried to display dialog for unknown " +
+                "preference type. Did you forget to override onDisplayPreferenceDialog()?");
+    }
+    .....
 }</code></pre>
 
 <a href="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v7-preference.png"><img class="alignnone  wp-image-660" src="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v7-preference.png" alt="" width="540" height="391" /></a>
@@ -50,23 +50,19 @@ android.support.v14.preference.PreferenceFragment源码：
 
 <pre><code>@Override
 public void onDisplayPreferenceDialog(Preference preference) {
-
-....
-
-final DialogFragment f;
-if (preference instanceof EditTextPreference) {
-f = EditTextPreferenceDialogFragment.newInstance(preference.getKey());
-} else if (preference instanceof ListPreference) {
-f = ListPreferenceDialogFragment.newInstance(preference.getKey());
-} else if (preference instanceof MultiSelectListPreference) {
-f = MultiSelectListPreferenceDialogFragment.newInstance(preference.getKey());
-} else {
-throw new IllegalArgumentException("Tried to display dialog for unknown " +
-"preference type. Did you forget to override onDisplayPreferenceDialog()?");
-}
-
-....
-
+	....
+	final DialogFragment f;
+	if (preference instanceof EditTextPreference) {
+   		f = EditTextPreferenceDialogFragment.newInstance(preference.getKey());
+	} else if (preference instanceof ListPreference) {
+   		f = ListPreferenceDialogFragment.newInstance(preference.getKey());
+	} else if (preference instanceof MultiSelectListPreference) {
+    	f = MultiSelectListPreferenceDialogFragment.newInstance(preference.getKey());
+	} else {
+    	throw new IllegalArgumentException("Tried to display dialog for unknown " +
+            	"preference type. Did you forget to override onDisplayPreferenceDialog()?");
+	}
+	....
 }</code></pre>
 
 <a href="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png"><img class="alignnone  wp-image-661" src="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png" alt="" width="523" height="174" /></a>
@@ -77,25 +73,19 @@ throw new IllegalArgumentException("Tried to display dialog for unknown " +
 
 那么我们接下来看一下 PreferenceDialogFragment 和 PreferenceDialogFragmentCompat 的源码：
 
-&nbsp;
-
 android.support.v14.preference. PreferenceDialogFragment 源码：
 
-<pre><code>@Override
-public @NonNull
-Dialog onCreateDialog(Bundle savedInstanceState) {
-final Context context = getActivity();
-mWhichButtonClicked = DialogInterface.BUTTON_NEGATIVE;
+<pre><code>@Overridepublic @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
+    final Context context = getActivity();
+    mWhichButtonClicked = DialogInterface.BUTTON_NEGATIVE;
 
-final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(context)
-.setTitle(mDialogTitle)
-.setIcon(mDialogIcon)
-.setPositiveButton(mPositiveButtonText, this)
-.setNegativeButton(mNegativeButtonText, this);
-
-//...省略
-
-return dialog;
+    final android.app.AlertDialog.Builder builder = new AlertDialog.Builder(context)
+            .setTitle(mDialogTitle)
+            .setIcon(mDialogIcon)
+            .setPositiveButton(mPositiveButtonText, this)
+            .setNegativeButton(mNegativeButtonText, this);
+	//...省略
+    return dialog;
 }</code></pre>
 
 &nbsp;
@@ -105,14 +95,14 @@ android.support.v7.preference.PreferenceDialogFragmentCompat源码：
 <pre><code>@Override
 public @NonNull
 Dialog onCreateDialog(Bundle savedInstanceState) {
-final Context context = getActivity();
-mWhichButtonClicked = DialogInterface.BUTTON_NEGATIVE;
+    final Context context = getActivity();
+    mWhichButtonClicked = DialogInterface.BUTTON_NEGATIVE;
 
-final android.support.v7.app.AlertDialog.Builder builder = new AlertDialog.Builder(context)
-.setTitle(mDialogTitle)
-.setIcon(mDialogIcon)
-.setPositiveButton(mPositiveButtonText, this)
-.setNegativeButton(mNegativeButtonText, this);
+    final android.support.v7.app.AlertDialog.Builder builder = new AlertDialog.Builder(context)
+            .setTitle(mDialogTitle)
+            .setIcon(mDialogIcon)
+            .setPositiveButton(mPositiveButtonText, this)
+            .setNegativeButton(mNegativeButtonText, this);
 
 }</code></pre>
 
@@ -125,13 +115,9 @@ v14下的PreferenceDialogFragment 使用的是android.app.AlertDialog，而v7下
 com.android.internal.app. AlertController源码：
 
 <pre><code>protected AlertController(Context context, DialogInterface di, Window window) {
-
-...
-
-final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,                                                 com.android.internal.R.attr.alertDialogStyle, 0);
-
-...
-
+    ...
+    final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,                				com.android.internal.R.attr.alertDialogStyle, 0);
+    ...
 }</code></pre>
 
 &nbsp;
@@ -139,15 +125,10 @@ final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialo
 android.support.v7.app. AlertController源码:
 
 <pre><code>public AlertController(Context context, AppCompatDialog di, Window window) {
-
-...
-
-final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,
-
-android.support.v7.appcompat.R.attr.alertDialogStyle, 0);
-
-...
-
+	...
+    final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,
+                android.support.v7.appcompat.R.attr.alertDialogStyle, 0);
+	...
 }</code></pre>
 
 于是乎比较原生和v7下的AlertController会发现原生使用的是com.android.internal.R.styleable.AlertDialog，我们是无法通过更改alertdialogstyle去修改原生的样式的，虽然官方在官方文档中有提供如下api
@@ -186,8 +167,6 @@ hook点如果是android.app.AlertDialog那么对整个R文件需要修改，工�
 &nbsp;
 
 这次的思路应该一路下来看源码和做修改没有大差错，好处是自己熟悉系统以及兼容包源码中preference和alertdialog下配合使用的部分，也了解hook的一些局限性和导致的后果
-
-&nbsp;
 
 附，参考文章：
 
