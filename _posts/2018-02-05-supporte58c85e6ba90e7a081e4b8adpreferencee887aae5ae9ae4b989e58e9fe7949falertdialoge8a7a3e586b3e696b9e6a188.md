@@ -154,9 +154,7 @@ api-hook这套方案需要用反射进去对android.app.AlertDialog进行修改
 
 hook点如果是android.app.AlertDialog那么对整个R文件需要修改，工程量很大。
 
-退一步，假如在android.support.v14.preference. PreferenceDialogFragment 的onCreateDialog
-
-（Bundle savedInstanceState）进行修改，那么其中AlertDialog为方法的局部变量，也没有办法反射，需要直接拿到onCreateDialog下的所有变量，对整个方法进行偷梁换柱，这种方法可行，但工程量较大。
+退一步，假如在android.support.v14.preference.PreferenceDialogFragment 的onCreateDialog（Bundle savedInstanceState）进行修改，那么其中AlertDialog为方法的局部变量，也没有办法反射，需要直接拿到onCreateDialog下的所有变量，对整个方法进行偷梁换柱，这种方法可行，但工程量较大。
 
 接下来想到了还有aop进行hook注入，同样工作量不小。
 
