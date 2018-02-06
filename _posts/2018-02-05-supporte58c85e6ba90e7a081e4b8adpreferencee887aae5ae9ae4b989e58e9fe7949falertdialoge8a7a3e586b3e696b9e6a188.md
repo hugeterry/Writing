@@ -9,7 +9,7 @@ permalink: http://hugeterry.cn/dreams/659
 published: true
 post_date: 2018-02-05 23:08:28
 ---
-<h3>场景</h3>
+<h2>场景</h2>
 最近在开发UI控件库中需要对perference自定义样式，而EditTextPreference以及ListPreference等均使用到alertdialog，则需要对alertdialog的样式进行自定义修改
 
 首先从demo出发，Android <a href="https://github.com/aosp-mirror/platform_frameworks_support"> Support包源码</a>中sample并没有对perference作demo，网罗的一些demo，其中不乏两种方式使用support-preference，
@@ -21,9 +21,7 @@ post_date: 2018-02-05 23:08:28
 
 <a href="https://github.com/aosp-mirror/platform_packages_apps_settings">platform_packages_apps_settings</a>（android8.0 下settings app源码）采用的是Activity-PreferenceFragment的搭配(这个需要仔细去阅读android8.0 settings的源码，在这里不做详述)，可以在activity下使用
 
-使用这两种方式去展示时，会发现Activity-PreferenceFragment的搭配是不能通过在theme下重写alertdialogstyle的样式布局去改变perference控件（例如android.support.v7.preference.EditTextPreference
-
-、android.support.v7.preference.ListPreference）弹出的alertdialog。而AppCompatActivity - PreferenceFragmentCompat是可以的
+使用这两种方式去展示时，会发现Activity-PreferenceFragment的搭配是不能通过在theme下重写alertdialogstyle的样式布局去改变perference控件（例如android.support.v7.preference.EditTextPreference、android.support.v7.preference.ListPreference）弹出的alertdialog。而AppCompatActivity - PreferenceFragmentCompat是可以的
 <blockquote>那么为什么会这样？我们从两者的源码出发去探索</blockquote>
 android.support.v7.preference. PreferenceFragmentCompat 源码：
 <pre><code>@Override
@@ -132,7 +130,7 @@ Creates a builder for an alert dialog that uses an explicit theme resource.</blo
 也即是说，<strong>在</strong>android.support.v14.preference.<strong>PreferenceFragment使用preference控件，弹出的AlertDialog会使用原生的样式以及布局，这是无法通过调用api改变的</strong>，而PreferenceFragment继承了android.app.Fragment，可以在Activity下使用，所以如果你在Activity-PreferenceFragment这套方案下使用时，无法改变AlertDialog的样式。
 
 在v7的PreferenceFragmentCompat使用preference控件，弹出的AlertDialog是可以通过在theme下重写alertdialogstyle的样式布局去改变改变的
-<h3>解决方案</h3>
+<h2>解决方案</h2>
 那么接下来，为了适配更多的方式，我需要在android.support.v14.preference.PreferenceFragment弹出的AlertDialog去改变其样式和布局，想到了两种策略：
 <ol>
  	<li>hook注入，偷梁换柱</li>
