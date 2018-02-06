@@ -36,7 +36,7 @@ public void onDisplayPreferenceDialog(Preference preference) {
         f = MultiSelectListPreferenceDialogFragmentCompat.newInstance(preference.getKey());
     } else {
         throw new IllegalArgumentException("Tried to display dialog for unknown " +
-                "preference type. Did you forget to override onDisplayPreferenceDialog()?");
+            "preference type. Did you forget to override onDisplayPreferenceDialog()?");
     }
     .....
 }</code></pre>
@@ -45,19 +45,19 @@ public void onDisplayPreferenceDialog(Preference preference) {
 android.support.v14.preference.PreferenceFragment源码：
 <pre><code>@Override
 public void onDisplayPreferenceDialog(Preference preference) {
-	....
-	final DialogFragment f;
-	if (preference instanceof EditTextPreference) {
-   		f = EditTextPreferenceDialogFragment.newInstance(preference.getKey());
-	} else if (preference instanceof ListPreference) {
-   		f = ListPreferenceDialogFragment.newInstance(preference.getKey());
-	} else if (preference instanceof MultiSelectListPreference) {
+    ....
+    final DialogFragment f;
+    if (preference instanceof EditTextPreference) {
+   	f = EditTextPreferenceDialogFragment.newInstance(preference.getKey());
+    } else if (preference instanceof ListPreference) {
+   	f = ListPreferenceDialogFragment.newInstance(preference.getKey());
+    } else if (preference instanceof MultiSelectListPreference) {
     	f = MultiSelectListPreferenceDialogFragment.newInstance(preference.getKey());
-	} else {
+    } else {
     	throw new IllegalArgumentException("Tried to display dialog for unknown " +
-            	"preference type. Did you forget to override onDisplayPreferenceDialog()?");
-	}
-	....
+            "preference type. Did you forget to override onDisplayPreferenceDialog()?");
+    }
+    ....
 }</code></pre>
 <a href="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png"><img class="alignnone wp-image-661" src="http://www.hugeterry.cn/wp-content/uploads/2018/02/pref-v14-preference.png" alt="" width="523" height="174" /></a>
 
@@ -106,7 +106,8 @@ v14下的PreferenceDialogFragment 使用的是android.app.AlertDialog，而v7下
 com.android.internal.app. AlertController源码：
 <pre><code>protected AlertController(Context context, DialogInterface di, Window window) {
     ...
-    final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,                				com.android.internal.R.attr.alertDialogStyle, 0);
+    final TypedArray a = context.obtainStyledAttributes(null, R.styleable.AlertDialog,
+                com.android.internal.R.attr.alertDialogStyle, 0);
     ...
 }</code></pre>
 &nbsp;
