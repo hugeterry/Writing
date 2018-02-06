@@ -68,7 +68,8 @@ public void onDisplayPreferenceDialog(Preference preference) {
 那么我们接下来看一下 PreferenceDialogFragment 和 PreferenceDialogFragmentCompat 的源码：
 
 android.support.v14.preference. PreferenceDialogFragment 源码：
-<pre><code>@Overridepublic @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
+<pre><code>@Override
+public @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
     final Context context = getActivity();
     mWhichButtonClicked = DialogInterface.BUTTON_NEGATIVE;
 
@@ -84,8 +85,7 @@ android.support.v14.preference. PreferenceDialogFragment 源码：
 
 android.support.v7.preference.PreferenceDialogFragmentCompat源码：
 <pre><code>@Override
-public @NonNull
-Dialog onCreateDialog(Bundle savedInstanceState) {
+public @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
     final Context context = getActivity();
     mWhichButtonClicked = DialogInterface.BUTTON_NEGATIVE;
 
