@@ -1,0 +1,54 @@
+---
+ID: 418
+post_title: >
+  Android
+  6.0权限申请与DialogFragment的show()结合所遇到的
+post_name: 'android-6-0%e6%9d%83%e9%99%90%e7%94%b3%e8%af%b7%e4%b8%8edialogfragment%e7%9a%84show%e7%bb%93%e5%90%88%e6%89%80%e9%81%87%e5%88%b0%e7%9a%84'
+author: HugeTerry
+post_date: 2016-12-17 00:35:50
+layout: post
+link: http://hugeterry.cn/dreams/418
+published: true
+tags:
+  - Android
+  - Android 6.0权限
+  - APP
+  - 遇过的坑
+categories:
+  - 开发那些事
+---
+最近在开发项目时需要用到Android 6.0权限申请，解决的快捷方式是用Google提供的<a href="https://github.com/googlesamples/easypermissions">EasyPermissions</a>
+
+于是在这个<a href="https://github.com/googlesamples/easypermissions">EasyPermissions</a>中，<code><span class="pl-en">onRequestPermissionsResult() </span></code><span class="pl-en">等同于<code>onResume()</code>的生命周期，在调用<code>DialogFragment</code>的<code>show()</code>方法时，就会报以下错误：</span>
+
+<code>java.lang.IllegalStateException: Can not perform <span class="keyword">this</span> action after onSaveInstanceState </code>
+
+经过一遍搜索，问题在于
+<blockquote><code>onSaveInstanceState()</code>方法是在该<code>Activity</code>即将被销毁前调用，来保存<code>Activity</code>数据的，如果在保存完状态后再给它添加<code>Fragment</code>就会出错
+
+解决方法就是把<code>commit()</code> 方法替换成 <code>commitAllowingStateLoss()</code></blockquote>
+api中对<code>commitAllowingStateLoss()</code>给出的说法是：
+<blockquote>Like <code><a href="https://developer.android.com/reference/android/app/FragmentTransaction.html#commit()">commit()</a></code> but allows the commit to be executed after an activity's state is saved.</blockquote>
+而对于<code>DialogFragment</code>的<code>show()</code>方法，源码是：
+<pre><code>public void show(FragmentManager manager, String tag) {
+    mDismissed = false;
+    mShownByMe = true;
+    FragmentTransaction ft = manager.beginTransaction();
+    ft.add(this, tag);
+    ft.commit();
+}
+</code></pre>
+因此，我写了个工具类的方法将commit（）方法替换成 commitAllowingStateLoss()
+如下：
+<pre><code>/**
+ * 弹出语音对话框
+ *
+ * @param manager
+ * @param dialog
+ */
+public static void showDialog(FragmentManager manager, VoiceDialog dialog) {
+    FragmentTransaction ft = manager.beginTransaction();
+    ft.add(dialog, "voice_dialog");
+    ft.commitAllowingStateLoss();
+}</code></pre>
+当然，出现该异常可能还有其他原因，这是我所遇到的
