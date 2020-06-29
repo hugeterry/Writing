@@ -15,7 +15,7 @@ categories:
 ---
 最近在开发中见到了位运算，揣摩了许久，总结了一下
 
-学会从开发中运用位运算，首先要懂得他的思想,这个就涉及一道常见的题目:<a href="https://www.zhihu.com/question/19676641" target="_blank" rel="noopener">有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有 10 只小白鼠和一星期的时间，如何检验出哪个瓶子里有毒药？</a>
+学会从开发中运用位运算，首先要懂得他的思想,这个就涉及一道常见的题目:<a href="https://www.zhihu.com/question/19676641" target="_blank" rel="noopener noreferrer">有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有 10 只小白鼠和一星期的时间，如何检验出哪个瓶子里有毒药？</a>
 <div>
 <blockquote>
 <div>答案是这样的：</div>
@@ -50,7 +50,7 @@ public static final int FLAG_ACTIVITY_MULTIPLE_TASK = 0x08000000;</code></pre>
 
 0x4C5596 -&gt;  0100 1100 0101 0101 1001 0110
 
-参考：<a href="http://www.cnblogs.com/200911/p/3348371.html?utm_source=tuicool" target="_blank" rel="noopener">为什么android的R类要定义成16进制</a></blockquote>
+参考：<a href="http://www.cnblogs.com/200911/p/3348371.html?utm_source=tuicool" target="_blank" rel="noopener noreferrer">为什么android的R类要定义成16进制</a></blockquote>
 而当我们自己执行一些api操作时,像在android 6.0+ 改变状态栏:
 
 白底黑字:
