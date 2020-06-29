@@ -1,0 +1,71 @@
+---
+ID: 87
+post_title: iOS界面开发基本流程
+post_name: 'ios%e7%95%8c%e9%9d%a2%e5%bc%80%e5%8f%91%e5%9f%ba%e6%9c%ac%e6%b5%81%e7%a8%8b'
+author: HugeTerry
+post_date: 2015-11-13 23:54:33
+layout: post
+link: http://hugeterry.cn/dreams/87
+published: true
+tags:
+  - iOS
+  - Swift
+categories:
+  - iOS
+---
+最近开始接触iOS开发，于是决定把学习笔记放上来，以便翻阅...
+
+基本开发流程主要是熟悉StoryBoard的使用
+
+StoryBoard在iOS开发中用起来感觉比Android简便了不少，包括苹果提供了Assistant editor关联面板，让界面控件与代码之间使用大大简化了手写代码的麻烦
+<h1>绑定控件</h1>
+<h2>1.手动绑定</h2>
+<img class=" wp-image-88 alignright" style="font-size: 16px; line-height: 1.5;" src="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-16.34.10.png" alt="屏幕快照 2015-11-14 16.34.10" width="148" height="136" />
+<h3>绑定控件及变量</h3>
+选择New Referencing Outlet后拖拽至View Controller，在弹出的菜单中选择写好的声明变量名，就跟代码中控件绑定了，注意观察是否在代码旁出现了小圆圈，是则成功绑定。
+<h3> 绑定事件</h3>
+<a href="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-16.43.09.png"><img class=" wp-image-90 alignright" src="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-16.43.09.png" alt="屏幕快照 2015-11-14 16.43.09" width="130" height="186" /></a>
+
+同样道理，事件的绑定在右键控件后，选择Touch up Inside进行拖拽至View Controller
+<h3></h3>
+<h3></h3>
+<h3></h3>
+&nbsp;
+<h2>2.Assistant editor绑定代码</h2>
+简单简便，点击Assistant editor面板按钮后按住ctrl直接拖拽成功。
+
+&nbsp;
+<h1>视图切换</h1>
+在添加了控件后，按住ctrl拖拽可实现视图切换，在iPhone中，拖拽会出现Action
+
+<img class="size-full wp-image-89 alignright" style="line-height: 1.5;" src="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-16.33.44.png" alt="屏幕快照 2015-11-14 16.33.44" width="129" height="66" />
+
+Segue，分别为push，modal，custom
+<ul>
+	<li>push: push类型需要头界面为Navigation Controller，实现效果为右侧划入。在第二个界面会带有导航栏并且附有返回按钮</li>
+	<li>modal：不需要导航栏，推出的时候第二个界面没有导航栏和返回按钮，返回的时候是下个界面dismiss</li>
+	<li>custom：自定义跳转</li>
+</ul>
+&nbsp;
+<h1>绑定Swift类</h1>
+<a href="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-16.51.10.png"><img class=" wp-image-91 alignright" src="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-16.51.10-300x289.png" alt="屏幕快照 2015-11-14 16.51.10" width="260" height="250" /></a>
+
+新建cocoa touch class，继承UIViewController后在storyboard右上方的custom class的class写入新建类的名字后就可以完成了
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+<h1>声明及控件功能</h1>
+<h2><a href="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-17.23.08.png"><img class="alignnone size-medium wp-image-102" src="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-17.23.08-300x161.png" alt="屏幕快照 2015-11-14 17.23.08" width="300" height="161" /></a><img class="size-medium wp-image-104 alignnone" style="font-size: 16px; line-height: 1.5;" src="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-17.22.54-300x140.png" alt="屏幕快照 2015-11-14 17.22.54" width="300" height="140" /></h2>
+&nbsp;
+<h1>iOS浏览器开发制作</h1>
+storyboard设置可简单创建，浏览器代码如下<a href="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-17.01.47.png">
+</a><a href="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-17.22.40.png"><img class="alignnone size-medium wp-image-103" src="http://www.hugeterry.cn/wp-content/uploads/2015/11/屏幕快照-2015-11-14-17.22.40-300x198.png" alt="屏幕快照 2015-11-14 17.22.40" width="300" height="198" /></a>
+
+&nbsp;
